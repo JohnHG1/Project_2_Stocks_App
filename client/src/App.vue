@@ -17,9 +17,14 @@ export default {
     'detail': Detail,
     'portfolio-summary': PortfolioSummary,
     'stock-list': StockList
-
+  },
+  mounted() {
+    fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=fb&outputsize=full&apikey=611FU2Q01I2PT429`)
+      .then(res => res.json())
+      .then(data => console.log(data))
+    }
   }
-}
+
 </script>
 
 <style>
