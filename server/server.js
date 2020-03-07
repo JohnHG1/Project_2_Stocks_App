@@ -12,9 +12,9 @@ app.use(bodyParser.json());
 
 MongoClient.connect('mongodb://localhost:27017')
 .then((client) => {
-  const db = client.db('stock_hub');
+  const db = client.db('stocks_hub');
   const stockCollection = db.collection('stocks');
-  const stockRouter = createRouter(createRouter);
+  const stockRouter = createRouter(stockCollection);
   app.use('/api/stocks/', stockRouter);
 })
 .catch(console.err);
