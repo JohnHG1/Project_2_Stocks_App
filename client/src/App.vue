@@ -1,8 +1,12 @@
 <template>
   <div id="app">
-    <portfolio-summary/>
-    <stock-list/>
-    <detail/>
+    <div class="portfolio-summary">
+      <portfolio-summary/>
+    </div>
+    <div class="body">
+      <stock-list/>
+      <detail/>
+    </div>
   </div>
 </template>
 
@@ -34,6 +38,15 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
+
+.portfolio-summary {
+  width: 100%;
+  height: 70px;
+}
+
+.body {
+  display: flex
+}
+
 </style>

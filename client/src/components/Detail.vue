@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="detail">
     <h1>Detail Box</h1>
   </div>
 </template>
@@ -15,18 +15,17 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
+
+.detail {
+  width: 75%;
+  height: 700px;
+  background-color: lightgrey;
+  margin: 0 auto;
   padding: 0;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+
+h1 {
+  margin: 0;
 }
-a {
-  color: #42b983;
-}
+
 </style>
