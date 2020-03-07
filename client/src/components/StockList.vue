@@ -2,8 +2,7 @@
   <div class="stock-list">
     <input type="text" value="" placeholder="Search" v-model="searchString" list="search-list" @change="handleSearchInputs">
     <datalist id="search-list" v-if="searchResults">
-      <option value="stock['1. symbol']" v-for="stock in searchResults">{{stock["1. symbol"]}}</option>
-
+      <option :value="stock['1. symbol']" v-for="stock in searchResults">{{stock["1. symbol"]}}</option>
     </datalist>
 
     <stock-item/>
