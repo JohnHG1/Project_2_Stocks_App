@@ -42,7 +42,10 @@ methods: {
   background-color: lightgrey;
   padding: 0;
   margin: 0;
+}
 
+datalist {
+  display: block;
 }
 
 input {
