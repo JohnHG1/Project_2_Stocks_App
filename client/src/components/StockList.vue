@@ -1,5 +1,5 @@
 <template lang="html">
-  <stock-item/>
+  <stock-item />
 </template>
 
 <script>
