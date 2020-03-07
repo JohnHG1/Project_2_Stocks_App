@@ -1,6 +1,11 @@
 <template lang="html">
   <div class="stock-list">
-    <input type="text" value="" placeholder="Search" v-model="searchString">
+    <input type="text" value="" placeholder="Search" v-model="searchString" list="search-list" @change="handleSearchInputs">
+    <datalist id="search-list" v-if="searchResults">
+      <option value="stock['1. symbol']" v-for="stock in searchResults">{{stock["1. symbol"]}}</option>
+
+    </datalist>
+
     <stock-item/>
   </div>
 
@@ -16,8 +21,17 @@ export default {
 },
 data() {
   return {
-    searchString: ""
+    searchString: "",
+    searchResults: []
   }
+},
+methods: {
+  handleSearchInputs: function (){
+    fetch(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${this.searchString}&apikey=611FU2Q01I2PT429`)
+      .then(res => res.json())
+      .then(data => this.searchResults= data["bestMatches"])
+  }
+
 }
 }
 </script>
