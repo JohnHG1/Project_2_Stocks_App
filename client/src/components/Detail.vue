@@ -1,14 +1,26 @@
 <template>
   <div class="detail">
     <h1>Detail Box</h1>
+    <button type="button" @click="formatChartData">run formatter</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
+  name: 'Detail',
+  props: ['detailStock'],
+  data() {
+    return {
+      chartData: []
+    }
+  },
+  methods: {
+    formatChartData: function () {
+      for (const key of Object.keys(this.detailStock)) {
+        this.chartData.push([key, this.detailStock[key]['4. close']])
+      }
+      console.log(this.chartData);
+    }
   }
 }
 </script>

@@ -5,7 +5,7 @@
     </div>
     <div class="body">
       <stock-list/>
-      <detail/>
+      <detail :detailStock="detailStock"/>
     </div>
   </div>
 </template>
@@ -25,7 +25,12 @@ export default {
   mounted() {
     fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=fb&outputsize=full&apikey=611FU2Q01I2PT429`)
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then(data => this.detailStock = data["Time Series (Daily)"])
+    },
+    data() {
+      return {
+        detailStock: {}
+      }
     }
   }
 
