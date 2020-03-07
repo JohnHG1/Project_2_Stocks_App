@@ -8,9 +8,9 @@ const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 const createRouter = require('./helpers/create_router.js');
 
-app.use(bodyParser/json());
+app.use(bodyParser.json());
 
-MongoClient.connetn('mongodb://localhost:27017')
+MongoClient.connect('mongodb://localhost:27017')
 .then((client) => {
   const db = client.db('stock_hub');
   const stockCollection = db.collection('stocks');
