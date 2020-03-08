@@ -1,14 +1,20 @@
 <template>
   <div class="detail">
     <h1>Detail Box</h1>
+  <graphs :graph_data='chartData'/>
     <button type="button" @click="formatChartData">run formatter</button>
   </div>
 </template>
 
 <script>
+import Graph from './Graph.vue';
+
 export default {
   name: 'Detail',
   props: ['detailStock'],
+  components:{
+      'graphs': Graph
+  },
   data() {
     return {
       chartData: []
