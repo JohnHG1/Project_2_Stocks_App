@@ -16,6 +16,8 @@ import PortfolioSummary from './components/PortfolioSummary.vue'
 import StockList from './components/StockList.vue'
 import StockService from './services/StockService.js'
 
+
+
 export default {
   name: 'App',
   components: {
@@ -25,11 +27,6 @@ export default {
   },
   mounted() {
     this.fetchUserStocks();
-    fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=fb&outputsize=full&apikey=611FU2Q01I2PT429`)
-      .then(res => res.json())
-      .then(data => this.detailStock = data)
-
-
     },
     data() {
       return {
@@ -47,16 +44,19 @@ export default {
           }
         })
       },
-
       fetchStockPrice: function (stock) {
-        fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stock['stock_symbol']}&apikey=611FU2Q01I2PT429`)
+        fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stock['stock_symbol']}&apikey=${process.env.VUE_APP_API_KEY}`)
           .then(res => res.json())
           .then(payload => {
             stock['price'] = parseFloat(payload['Global Quote']['05. price'],2)
             this.userStocks.push(stock)
         })
-    }
-
+      },
+      handleStockSelect: function(stock){
+        fetch(`https://www.alphavantage.coquery?function=TIME_SERIES_DAILY&symbol=${stock.stock_symbol}&outputsize=full&apikey=${process.env.VUE_APP_API_KEY}`)
+        .then(res => res.json())
+        .then(data => this.detailStock = data)
+      }
     }
   }
 

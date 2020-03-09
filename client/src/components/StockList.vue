@@ -4,13 +4,17 @@
     <datalist id="search-list" v-if="searchResults">
       <option :value="stock['1. symbol']" v-for="stock in searchResults">{{stock["1. symbol"]}}</option>
     </datalist>
-    <stock-item v-for="stock in userStocks" :stock="stock"/>
+    <stock-item @click.native="handleStockSelect(stock)" v-for="stock in userStocks" :stock="stock"/>
   </div>
 
 </template>
 
 <script>
-import StockItem from './StockItem.vue'
+import StockItem from './StockItem.vue';
+import Detail from './Detail.vue';
+import App from '../App.vue';
+
+
 
 export default {
   name: 'stock-list',
@@ -26,13 +30,15 @@ data() {
 },
 methods: {
   handleSearchInputs: function (){
-    fetch(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${this.searchString}&apikey=611FU2Q01I2PT429`)
+    fetch(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${this.searchString}&apikey=${process.env.VUE_APP_API_KEY}`)
       .then(res => res.json())
       .then(data => this.searchResults= data["bestMatches"])
+  },
+  handleStockSelect: function(stock){
+    App.handleStockSelect(stock)
+    // take in current clicked symbol
+    // pass symbol
   }
-
-
-
 }
 }
 </script>
@@ -52,7 +58,7 @@ datalist {
 
 input {
   width: 90%;
-  margin: 0 5%;
+  margin: 2% 5%;
   padding: 0;
   border: none;
   border-radius: 3px;
