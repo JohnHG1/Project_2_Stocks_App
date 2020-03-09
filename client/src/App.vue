@@ -43,7 +43,8 @@ export default {
         StockService.getStocks()
         .then(payload => {
           for (const stock of payload) {
-            this.fetchStockPrice(stock)
+            this.userStocks.push(stock)
+            // this.fetchStockPrice(stock)
           }
         })
       },
@@ -57,7 +58,7 @@ export default {
       },
       handleStockSelect: function(stock){
         // console.log(stock.stock_symbol);
-        fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${stock.stock_symbol}&outputsize=full&apikey=${process.env.VUE_APP_API_KEY}`)
+        fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${stock.stock_symbol}&apikey=${process.env.VUE_APP_API_KEY}`)
         .then(res => res.json())
         .then(data => this.detailStock = data)
       }

@@ -1,12 +1,13 @@
 <template>
   <div class="detail">
-  <graphs v-if="detailStock" :graph_data='chartData' :stockSymbol='stockSymbol'/>
+  <graphs v-if="chartData" :graph_data='chartData' :stockSymbol='stockSymbol'/>
     <!-- <button type="button" @click="formatChartData">run formatter</button> -->
   </div>
 </template>
 
 <script>
 import Graph from './Graph.vue';
+import {eventBus} from '../main.js';
 
 export default {
   name: 'Detail',
@@ -21,12 +22,20 @@ export default {
       stockSymbol: null
     }
   },
-  computed: {
+  watch: {
+    detailStock: function () {
+      this.formatChartData();
+      console.log('formatChartData called');
+    }
+
+
+  },
+  methods: {
     formatChartData: function () {
       this.chartData = [];
       // console.log(this.detailStock);
       this.stockData = this.detailStock['Time Series (Daily)'];
-      this.stockSymbol = this.detailStock["Meta Data"]["2. Symbol"];
+      // this.stockSymbol = this.detailStock["Meta Data"]["2. Symbol"];
       // console.log(this.stockData);
       for (const key of Object.keys(this.stockData)) {
         this.chartData.push([
@@ -34,7 +43,7 @@ export default {
           parseFloat(this.stockData[key]['4. close'])
         ])
       }
-      console.log(this.chartData);
+      console.log('chartData:',this.chartData);
     }
   }
 }

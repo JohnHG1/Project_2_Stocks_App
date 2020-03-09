@@ -15,24 +15,38 @@ import exportingInit from 'highcharts/modules/exporting'
 exportingInit(Highcharts)
 
 export default {
-  data() {
-    return {
-      chartOptions: {
-        series: [{
-          data: this.graph_data
-        }],
-        title: {
-          text: this.stockSymbol
-        },
-        subtitle: {
-          text: ''
-        }
-      }
-    }
-  },
+  // data() {
+    // return {
+    //   chartOptions: {
+    //     series: [{
+    //       data: this.graph_data
+    //     }],
+    //     title: {
+    //       text: this.stockSymbol
+    //     },
+    //     subtitle: {
+    //       text: ''
+    //     }
+    //   }
+
   props:['graph_data', 'stockSymbol'],
   components: {
     'highcharts': Chart
+  },
+  computed: {
+    chartOptions() {
+      return {
+      series: [{
+        data: this.graph_data
+      }],
+      title: {
+        text: this.stockSymbol
+      },
+      subtitle: {
+        text: ''
+      }
+    }
+    }
   }
 }
 </script>
