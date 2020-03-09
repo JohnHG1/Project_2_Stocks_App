@@ -15,6 +15,7 @@ export default {
 <style lang="css" scoped>
 .stock-item {
 display: flex;
-justify-content: space-around
+justify-content: space-around;
+border-bottom: 1px solid black;
 }
 </style>
