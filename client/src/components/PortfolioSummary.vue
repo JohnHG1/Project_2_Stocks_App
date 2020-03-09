@@ -12,14 +12,12 @@ export default {
 
   computed:{
     portfolioTotal(){
-      // return this.userStocks.reduce((runningTotal, stock) => {
-      //   return runningtotal+=stock.price*stock.number_of_shares
-      // }, 0)
-      let total=0
-      this.userStocks.forEach(stock=>{
-        total+=stock.price*stock.number_of_shares
-      })
-      return total
+      return this.userStocks.reduce((runningTotal, stock) => runningTotal + stock.price * stock.number_of_shares, 0)
+    //   let total=0
+    //   this.userStocks.forEach(stock=>{
+    //     total+=stock.price*stock.number_of_shares
+    //   })
+    //   return total
     }
   }
 }
