@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="portfolio-summary">
-      <portfolio-summary/>
+      <portfolio-summary :userStocks="userStocks"/>
     </div>
     <div class="body">
       <stock-list :userStocks="userStocks"/>
