@@ -4,7 +4,7 @@
       <portfolio-summary/>
     </div>
     <div class="body">
-      <stock-list/>
+      <stock-list :userStocks="userStocks"/>
       <detail :detailStock="detailStock"/>
     </div>
   </div>
@@ -14,6 +14,7 @@
 import Detail from './components/Detail.vue'
 import PortfolioSummary from './components/PortfolioSummary.vue'
 import StockList from './components/StockList.vue'
+import StockService from './services/StockService.js'
 
 export default {
   name: 'App',
@@ -23,14 +24,25 @@ export default {
     'stock-list': StockList
   },
   mounted() {
-    fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=fb&outputsize=full&apikey=611FU2Q01I2PT429`)
-      .then(res => res.json())
-      .then(data => this.detailStock = data)
+    this.fetchUserStocks();
+    // fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=fb&outputsize=full&apikey=611FU2Q01I2PT429`)
+    //   .then(res => res.json())
+    //   .then(data => this.detailStock = data)
+
+
     },
     data() {
       return {
         detailStock: {},
-        detailStockSymbol: ""
+        detailStockSymbol: "",
+        userStocks: []
+      }
+    },
+    methods: {
+      fetchUserStocks: function () {
+        StockService.getStocks()
+        .then(payload => this.userStocks = payload)
+        .then(console.log(this.userStocks))
       }
     }
   }

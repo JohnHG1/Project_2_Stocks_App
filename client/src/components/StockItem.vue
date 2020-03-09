@@ -1,11 +1,20 @@
 <template lang="html">
-  <h2>Stock Item</h2>
+  <div class="stock-item">
+    <span>{{stock['stock_symbol']}}</span>
+    <span>{{stock['number_of_shares']}}</span>
+  </div>
 </template>
 
 <script>
 export default {
+  name: 'stockItem',
+  props: ['stock']
 }
 </script>
 
 <style lang="css" scoped>
+.stock-item {
+display: flex;
+justify-content: space-around
+}
 </style>

@@ -5,7 +5,7 @@
       <option :value="stock['1. symbol']" v-for="stock in searchResults">{{stock["1. symbol"]}}</option>
     </datalist>
 
-    <stock-item/>
+    <stock-item v-for="stock in userStocks" :stock="stock"/>
   </div>
 
 </template>
@@ -18,6 +18,7 @@ export default {
   components: {
     'stock-item': StockItem
 },
+props: ['userStocks'],
 data() {
   return {
     searchString: "",
