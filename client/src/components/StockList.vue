@@ -4,7 +4,7 @@
     <datalist id="search-list" v-if="searchResults">
       <option :value="stock['1. symbol']" v-for="stock in searchResults">{{stock["1. symbol"]}}</option>
     </datalist>
-    <stock-item @click.native="handleStockSelect(stock)" v-for="stock in userStocks" :stock="stock"/>
+    <stock-item @click.native="handleStockClick(stock)" v-for="stock in userStocks" :stock="stock"/>
   </div>
 
 </template>
@@ -13,6 +13,7 @@
 import StockItem from './StockItem.vue';
 import Detail from './Detail.vue';
 import App from '../App.vue';
+import {eventBus} from '../main.js';
 
 
 
@@ -34,8 +35,9 @@ methods: {
       .then(res => res.json())
       .then(data => this.searchResults= data["bestMatches"])
   },
-  handleStockSelect: function(stock){
-    App.handleStockSelect(stock)
+  handleStockClick: function(stock){
+    eventBus.$emit('stock-selected', stock)
+    // App.handleStockSelect(stock)
     // take in current clicked symbol
     // pass symbol
   }

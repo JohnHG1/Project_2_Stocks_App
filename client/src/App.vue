@@ -15,6 +15,7 @@ import Detail from './components/Detail.vue'
 import PortfolioSummary from './components/PortfolioSummary.vue'
 import StockList from './components/StockList.vue'
 import StockService from './services/StockService.js'
+import {eventBus} from './main.js';
 
 
 
@@ -27,6 +28,8 @@ export default {
   },
   mounted() {
     this.fetchUserStocks();
+
+    eventBus.$on('stock-selected', stock => this.handleStockSelect(stock) );
     },
     data() {
       return {
@@ -53,6 +56,7 @@ export default {
         })
       },
       handleStockSelect: function(stock){
+        // console.log(stock.stock_symbol);
         fetch(`https://www.alphavantage.coquery?function=TIME_SERIES_DAILY&symbol=${stock.stock_symbol}&outputsize=full&apikey=${process.env.VUE_APP_API_KEY}`)
         .then(res => res.json())
         .then(data => this.detailStock = data)
