@@ -20,11 +20,14 @@ export default {
       chartOptions: {
         series: [{
           data: this.graph_data
-        }]
+        }],
+        title: {
+          text: this.stockSymbol
+        }
       }
     }
   },
-  props:['graph_data'],
+  props:['graph_data', 'stockSymbol'],
   components: {
     'highcharts': Chart
   }

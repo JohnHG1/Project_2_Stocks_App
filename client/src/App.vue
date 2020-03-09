@@ -25,11 +25,12 @@ export default {
   mounted() {
     fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=fb&outputsize=full&apikey=611FU2Q01I2PT429`)
       .then(res => res.json())
-      .then(data => this.detailStock = data["Time Series (Daily)"])
+      .then(data => this.detailStock = data)
     },
     data() {
       return {
-        detailStock: {}
+        detailStock: {},
+        detailStockSymbol: ""
       }
     }
   }

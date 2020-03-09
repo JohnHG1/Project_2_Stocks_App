@@ -1,7 +1,6 @@
 <template>
   <div class="detail">
-    <h1>Detail Box</h1>
-  <graphs :graph_data='chartData'/>
+  <graphs :graph_data='chartData' :stockSymbol='stockSymbol'/>
     <button type="button" @click="formatChartData">run formatter</button>
   </div>
 </template>
@@ -17,15 +16,21 @@ export default {
   },
   data() {
     return {
-      chartData: []
+      chartData: [],
+      stockData: null,
+      stockSymbol: null
     }
   },
   methods: {
     formatChartData: function () {
-      for (const key of Object.keys(this.detailStock)) {
+      // console.log(this.detailStock);
+      this.stockData = this.detailStock['Time Series (Daily)'];
+      this.stockSymbol = this.detailStock["Meta Data"]["2. Symbol"];
+      // console.log(this.stockData);
+      for (const key of Object.keys(this.stockData)) {
         this.chartData.push([
           Math.round(new Date(key).getTime()/1000),
-          parseFloat(this.detailStock[key]['4. close'])
+          parseFloat(this.stockData[key]['4. close'])
         ])
       }
       console.log(this.chartData);
