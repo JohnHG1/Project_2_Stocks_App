@@ -4,7 +4,6 @@
     <datalist id="search-list" v-if="searchResults">
       <option :value="stock['1. symbol']" v-for="stock in searchResults">{{stock["1. symbol"]}}</option>
     </datalist>
-
     <stock-item v-for="stock in userStocks" :stock="stock"/>
   </div>
 
@@ -31,6 +30,8 @@ methods: {
       .then(res => res.json())
       .then(data => this.searchResults= data["bestMatches"])
   }
+
+
 
 }
 }

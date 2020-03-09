@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="stock-item">
     <span>{{stock['stock_symbol']}}</span>
-    <span>{{stock['number_of_shares']}}</span>
+    <span>{{parseFloat(stock['number_of_shares']*stock['price']).toFixed(2)}}</span>
   </div>
 </template>
 

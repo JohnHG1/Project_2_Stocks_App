@@ -41,9 +41,22 @@ export default {
     methods: {
       fetchUserStocks: function () {
         StockService.getStocks()
-        .then(payload => this.userStocks = payload)
-        .then(console.log(this.userStocks))
-      }
+        .then(payload => {
+          for (const stock of payload) {
+            this.fetchStockPrice(stock)
+          }
+        })
+      },
+
+      fetchStockPrice: function (stock) {
+        fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stock['stock_symbol']}&apikey=611FU2Q01I2PT429`)
+          .then(res => res.json())
+          .then(payload => {
+            stock['price'] = parseFloat(payload['Global Quote']['05. price'],2)
+            this.userStocks.push(stock)
+        })
+    }
+
     }
   }
 
