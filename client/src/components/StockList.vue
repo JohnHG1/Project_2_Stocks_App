@@ -45,7 +45,7 @@ methods: {
 }
 
 datalist {
-  display: block;
+  /* display: block; */
 }
 
 input {

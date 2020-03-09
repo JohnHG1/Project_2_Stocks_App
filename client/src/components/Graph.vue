@@ -23,6 +23,9 @@ export default {
         }],
         title: {
           text: this.stockSymbol
+        },
+        subtitle: {
+          text: ''
         }
       }
     }
