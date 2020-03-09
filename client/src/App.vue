@@ -25,9 +25,9 @@ export default {
   },
   mounted() {
     this.fetchUserStocks();
-    // fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=fb&outputsize=full&apikey=611FU2Q01I2PT429`)
-    //   .then(res => res.json())
-    //   .then(data => this.detailStock = data)
+    fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=fb&outputsize=full&apikey=611FU2Q01I2PT429`)
+      .then(res => res.json())
+      .then(data => this.detailStock = data)
 
 
     },

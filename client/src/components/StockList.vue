@@ -56,6 +56,7 @@ input {
   padding: 0;
   border: none;
   border-radius: 3px;
+  font-size: 1.25em;
 }
 
 
