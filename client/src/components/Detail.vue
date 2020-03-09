@@ -23,7 +23,10 @@ export default {
   methods: {
     formatChartData: function () {
       for (const key of Object.keys(this.detailStock)) {
-        this.chartData.push([key, this.detailStock[key]['4. close']])
+        this.chartData.push([
+          Math.round(new Date(key).getTime()/1000),
+          parseFloat(this.detailStock[key]['4. close'])
+        ])
       }
       console.log(this.chartData);
     }
