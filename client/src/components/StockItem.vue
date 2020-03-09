@@ -1,10 +1,13 @@
 <template lang="html">
   <div class="stock-item">
-    <div class="item_line_1">
+    <div class="top-line">
       <span>{{stock['stock_symbol']}}</span>
       <span>£{{parseFloat(stock['number_of_shares']*stock['price']).toFixed(2)}}</span>
+    </div>
+    <div class="bottom-line">
       <p>{{stock.number_of_shares}} @ {{stock.price}}</p>
     </div>
+
 
   </div>
 </template>
@@ -18,16 +21,28 @@ export default {
 
 <style lang="css" scoped>
 .stock-item {
-display: flex;
-justify-content: space-between;
-font-size: 1.5em;
+  width: 100%;
+display: block;
 border-bottom: 1px solid black;
-padding: 2% 0;
+margin: 0;
 }
 
-p{
-  text-align: right;
+.top-line {
+  display: flex;
+justify-content: space-between;
+font-size: 1.25em;
+margin: 0;
+
+}
+
+.bottom-line {
   font-size: 1em;
+  text-align: right;
+  margin: 0;
+}
+
+p {
+  margin: 0
 }
 
 </style>
