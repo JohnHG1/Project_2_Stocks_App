@@ -23,6 +23,7 @@ export default {
   },
   computed: {
     formatChartData: function () {
+      this.chartData = [];
       // console.log(this.detailStock);
       this.stockData = this.detailStock['Time Series (Daily)'];
       this.stockSymbol = this.detailStock["Meta Data"]["2. Symbol"];
