@@ -51,13 +51,13 @@ export default {
         fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stock['stock_symbol']}&apikey=${process.env.VUE_APP_API_KEY}`)
           .then(res => res.json())
           .then(payload => {
-            stock['price'] = parseFloat(payload['Global Quote']['05. price'],2)
+            stock['price'] = parseFloat(payload['Global Quote']['05. price'])
             this.userStocks.push(stock)
         })
       },
       handleStockSelect: function(stock){
         // console.log(stock.stock_symbol);
-        fetch(`https://www.alphavantage.coquery?function=TIME_SERIES_DAILY&symbol=${stock.stock_symbol}&outputsize=full&apikey=${process.env.VUE_APP_API_KEY}`)
+        fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${stock.stock_symbol}&outputsize=full&apikey=${process.env.VUE_APP_API_KEY}`)
         .then(res => res.json())
         .then(data => this.detailStock = data)
       }

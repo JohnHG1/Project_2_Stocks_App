@@ -1,7 +1,7 @@
 <template>
   <div class="detail">
-  <graphs :graph_data='chartData' :stockSymbol='stockSymbol'/>
-    <button type="button" @click="formatChartData">run formatter</button>
+  <graphs v-if="detailStock" :graph_data='chartData' :stockSymbol='stockSymbol'/>
+    <!-- <button type="button" @click="formatChartData">run formatter</button> -->
   </div>
 </template>
 
@@ -21,7 +21,7 @@ export default {
       stockSymbol: null
     }
   },
-  methods: {
+  computed: {
     formatChartData: function () {
       // console.log(this.detailStock);
       this.stockData = this.detailStock['Time Series (Daily)'];
