@@ -5,7 +5,7 @@
     </div>
     <div class="body">
       <stock-list :userStocks="userStocks"/>
-      <detail :detailStock="detailStock"/>
+      <detail :userStocks="userStocks" :detailStock="detailStock"/>
     </div>
   </div>
 </template>
@@ -29,6 +29,8 @@ export default {
   mounted() {
     this.fetchUserStocks();
 
+    eventBus.$on('share-added', res => this.fetchUserStocks());
+
     eventBus.$on('stock-selected', stock => this.handleStockSelect(stock) );
     },
     data() {
@@ -42,6 +44,7 @@ export default {
       fetchUserStocks: function () {
         StockService.getStocks()
         .then(payload => {
+          this.userStocks = [];
           for (const stock of payload) {
             this.userStocks.push(stock)
             // this.fetchStockPrice(stock)

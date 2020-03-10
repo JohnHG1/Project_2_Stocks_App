@@ -19,9 +19,11 @@ export default {
       method: 'DELETE'
     })
   },
-  updateStock(id) {
+  updateStock(id, payload) {
     return fetch(baseURL + id, {
-      method: 'PATCH'
+      method: 'PATCH',
+      body: JSON.stringify(payload),
+      headers: { 'Content-type': 'application/json'}
     })
   }
 }

@@ -19,7 +19,7 @@ import {eventBus} from '../main.js';
 
 export default {
   name: 'Detail',
-  props: ['detailStock'],
+  props: ['detailStock', 'userStocks'],
   components:{
       'graphs': Graph
   },
@@ -56,9 +56,18 @@ export default {
       e.preventDefault();
       const share = {
         stock_symbol: this.detailStock["Meta Data"]["2. Symbol"],
-        number_of_shares: this.number_of_shares
+        number_of_shares: parseInt(this.number_of_shares)
       };
-
+      for (let stock of this.userStocks){
+        if (share.stock_symbol === stock.stock_symbol){
+          share.number_of_shares += stock.number_of_shares
+          StockService.updateStock(stock._id, share)
+          .then(res => res.json())
+          .then(res => eventBus.$emit('share-added', res))
+          .then(res => console.log(res))
+            return
+          }
+        }
       StockService.postStock(share)
       .then(res => eventBus.$emit('share-added', res))
     },

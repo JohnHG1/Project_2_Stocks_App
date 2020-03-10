@@ -64,10 +64,11 @@ const createRouter = function (collection) {
     // UPDATE ROUTE
       router.patch('/:id', (req, res) => {
       const id = req.params.id;
+      const no_of_shares = req.body.number_of_shares
       collection
       .findOneAndUpdate(
         { _id: ObjectID(id)},
-        { $set: {status: 'Checked-in'} },
+        { $set: {number_of_shares: no_of_shares } },
         { returnOriginal: false }
       )
       .then((result) => {
