@@ -1,13 +1,14 @@
 <template>
   <div class="detail">
-  <graphs v-if="chartData" :graph_data='chartData' :stockSymbol='stockSymbol'/>
-  <div class="buttons">
+    <graphs v-if="chartData" :graph_data='chartData' :stockSymbol='stockSymbol'/>
 
-      <label for="number_of_shares">Quantity</label>
-      <input type="number" id="number_of_shares" v-model='number_of_shares'>
-      <button type="button" @click="buyShare">Buy Shares</button>
-      <button v-if="userStocks" type="button" @click="sellShare">Sell Shares</button>
-  </div>
+    <div class="buttons">
+
+        <label for="number_of_shares">Quantity</label>
+        <input type="number" id="number_of_shares" v-model='number_of_shares'>
+        <button type="button" @click="buyShare">Buy Shares</button>
+        <button v-if="userStocks" type="button" @click="sellShare">Sell Shares</button>
+    </div>
   </div>
 </template>
 

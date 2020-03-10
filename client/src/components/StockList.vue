@@ -1,9 +1,16 @@
 <template lang="html">
   <div class="stock-list">
     <input type="text" value="" placeholder="Search" v-model="searchString" list="search-list" @change="handleSearchInputs">
-    <datalist id="search-list" v-if="searchResults">
-      <option :value="stock['1. symbol']" v-for="stock in searchResults">{{stock["1. symbol"]}}</option>
-    </datalist>
+
+
+      <!-- <ul id="search-list" v-if="searchResults">
+        <li @click.native="searchResultSelect" :value="stock['1. symbol']" v-for="stock in searchResults">{{stock["1. symbol"]}}</li>
+      </ul> -->
+      <datalist id="search-list" v-if="searchResults">
+        <a @click.native="searchResultSelect"> <option :value="stock['1. symbol']" v-for="stock in searchResults">{{stock["1. symbol"]}}</option> </a>
+      </datalist>
+
+
     <stock-item @click.native="handleStockClick(stock)" v-for="stock in userStocks" :stock="stock"/>
   </div>
 
@@ -40,6 +47,9 @@ methods: {
     // App.handleStockSelect(stock)
     // take in current clicked symbol
     // pass symbol
+  },
+  searchResultSelect: function() {
+    console.log("hello world");
   }
 }
 }
@@ -55,7 +65,7 @@ methods: {
 }
 
 datalist {
-  /* display: block; */
+  display: block;
 }
 
 input {
