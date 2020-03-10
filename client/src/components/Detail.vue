@@ -1,7 +1,10 @@
 <template>
   <div class="detail">
   <graphs v-if="chartData" :graph_data='chartData' :stockSymbol='stockSymbol'/>
-    <!-- <button type="button" @click="formatChartData">run formatter</button> -->
+  <div class="buttons">
+    <button type="button" @click="buyShare">Buy Shares</button>
+    <button type="button" @click="sellShare">Sell Shares</button>
+  </div>
   </div>
 </template>
 
@@ -42,6 +45,9 @@ export default {
         ])
       }
       console.log('chartData:',this.chartData);
+    },
+    buyShare: function () {
+      console.log("Buy Share Button");
     }
   }
 }
