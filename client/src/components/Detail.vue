@@ -60,11 +60,13 @@ export default {
           StockService.updateStock(stock._id, share)
           .then(res => res.json())
           .then(res => eventBus.$emit('share-added', res))
+            this.number_of_shares = null;
             return
           }
         }
       StockService.postStock(share)
       .then(res => eventBus.$emit('share-added', res))
+      this.number_of_shares = null;
     },
     sellShare: function () {
       const share = {
@@ -78,6 +80,7 @@ export default {
           StockService.updateStock(stock._id, stock)
           .then(res => res.json())
           .then(res => eventBus.$emit('share-added', res))
+          this.number_of_shares = null;
             return
           }
         }
