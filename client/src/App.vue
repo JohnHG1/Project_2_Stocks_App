@@ -48,7 +48,7 @@ export default {
         .then(payload => {
           this.userStocks = [];
           for (const stock of payload) {
-            this.userStocks.push(stock)
+            // this.userStocks.push(stock)
             this.fetchStockPrice(stock)
           }
         })
