@@ -7,7 +7,7 @@
         <li @click.native="searchResultSelect" :value="stock['1. symbol']" v-for="stock in searchResults">{{stock["1. symbol"]}}</li>
       </ul> -->
       <datalist id="search-list" v-if="searchResults">
-        <a @click.native="searchResultSelect"> <option :value="stock['1. symbol']" v-for="stock in searchResults">{{stock["1. symbol"]}}</option> </a>
+        <option @click.native="searchResultSelect" :value="stock['1. symbol']" v-for="stock in searchResults">{{stock["1. symbol"]}}</option>
       </datalist>
 
 
