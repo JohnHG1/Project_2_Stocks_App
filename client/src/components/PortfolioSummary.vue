@@ -26,11 +26,17 @@ export default {
 <style lang="css" scoped>
 
 .portfolio {
+  display: inline-flex;
+  justify-content: flex-end;
   width: 100%;
   margin: 0;
   text-align: right;
-  height: 30px;
-  background-color: lightgrey
+  height: 40px;
+  background-color: lightgrey;
+  padding: 15px 0;
+}
+h1 {
+  margin: auto 10px;
 }
 
 </style>

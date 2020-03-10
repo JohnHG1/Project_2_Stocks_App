@@ -27,8 +27,6 @@ export default {
       this.formatChartData();
       console.log('formatChartData called');
     }
-
-
   },
   methods: {
     formatChartData: function () {
