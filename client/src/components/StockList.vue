@@ -6,9 +6,9 @@
       <!-- <ul id="search-list" v-if="searchResults">
         <li @click.native="searchResultSelect" :value="stock['1. symbol']" v-for="stock in searchResults">{{stock["1. symbol"]}}</li>
       </ul> -->
-      <datalist id="search-list" v-if="searchResults">
-        <option @click.native="searchResultSelect" :value="stock['1. symbol']" v-for="stock in searchResults">{{stock["1. symbol"]}}</option>
-      </datalist>
+      <select id="search-list" v-if="searchResults.length !== 0" @change="handleStockSearchSelect" >
+          <option v-for="stock in searchResults" :value="stock" ><b>{{stock["2. name"]}}</b>: {{stock["8. currency"]}}</option>
+      </select>
 
 
     <stock-item @click.native="handleStockClick(stock)" v-for="stock in userStocks" :stock="stock"/>
@@ -37,7 +37,8 @@ data() {
   }
 },
 methods: {
-  handleSearchInputs: function (){
+  handleSearchInputs: function (event){
+    console.log("handle search input", event.target.value);
     fetch(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${this.searchString}&apikey=${process.env.VUE_APP_API_KEY}`)
       .then(res => res.json())
       .then(data => this.searchResults= data["bestMatches"])
@@ -48,8 +49,14 @@ methods: {
     // take in current clicked symbol
     // pass symbol
   },
-  searchResultSelect: function() {
-    console.log("hello world");
+  // searchResultSelect: function(e) {
+  //   console.log(e["1. symbol"]);
+  // },
+  handleStockSearchSelect: function(){
+    console.log("hey", this.searchString);
+    fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${this.searchString}&outputsize=full&apikey=${process.env.VUE_APP_API_KEY}`)
+    .then(res => res.json())
+    .then(data => this.detailStock = data)
     }
   }
 }
@@ -65,7 +72,7 @@ methods: {
 }
 
 datalist {
-  display: block;
+  /* display: block; */
 }
 
 input {

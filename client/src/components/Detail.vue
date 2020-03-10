@@ -1,12 +1,12 @@
 <template>
   <div class="detail">
-  <graphs v-if="chartData" :graph_data='chartData' :stockSymbol='stockSymbol'/>
+  <graphs :graph_data='chartData' :stockSymbol='stockSymbol'/>
   <div class="buy-sell">
       <!-- <label for="number_of_shares">Quantity</label> -->
       <input type="number" id="number_of_shares" v-model='number_of_shares' placeholder="enter amount">
       <div class="buttons">
         <button class="buy" type="button" @click="buyShare">BUY</button>
-        <button class="sell" v-if="userStocks" type="button" @click="sellShare">SELL</button>
+        <button class="sell" type="button" @click="sellShare">SELL</button>
       </div>
   </div>
   </div>
@@ -124,11 +124,11 @@ button {
   font-size: 1.25em
 }
 
-.buy {
+.sell {
   background-color: #E83A3A;
 }
 
-.sell {
+.buy {
   background-color: #018E42
 }
 </style>
