@@ -41,7 +41,6 @@ export default {
       this.chartData = [];
 
       this.stockData = this.detailStock['Time Series (Daily)'];
-      // this.stockSymbol = this.detailStock["Meta Data"]["2. Symbol"];
       for (const key of Object.keys(this.stockData)) {
         this.chartData.push([
           Math.round(new Date(key).getTime()),

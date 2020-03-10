@@ -32,6 +32,8 @@ export default {
     eventBus.$on('share-added', res => this.fetchUserStocks());
 
     eventBus.$on('stock-selected', stock => this.handleStockSelect(stock) );
+
+    eventBus.$on('result-selected', symbol => this.handleResultSelect(symbol) );
     },
     data() {
       return {
@@ -47,7 +49,7 @@ export default {
           this.userStocks = [];
           for (const stock of payload) {
             this.userStocks.push(stock)
-            // this.fetchStockPrice(stock)
+            this.fetchStockPrice(stock)
           }
         })
       },
@@ -62,6 +64,12 @@ export default {
       handleStockSelect: function(stock){
         // console.log(stock.stock_symbol);
         fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${stock.stock_symbol}&outputsize=full&apikey=${process.env.VUE_APP_API_KEY}`)
+        .then(res => res.json())
+        .then(data => this.detailStock = data)
+      },
+      handleResultSelect: function(symbol){
+        // console.log(stock.stock_symbol);
+        fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&outputsize=full&apikey=${process.env.VUE_APP_API_KEY}`)
         .then(res => res.json())
         .then(data => this.detailStock = data)
       }
