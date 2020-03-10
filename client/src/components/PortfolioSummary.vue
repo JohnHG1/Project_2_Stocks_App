@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="portfolio">
-    <h1>Total: £{{this.portfolioTotal}}</h1>
+    <h1>Total: ${{this.portfolioTotal}}</h1>
   </div>
 
 </template>
