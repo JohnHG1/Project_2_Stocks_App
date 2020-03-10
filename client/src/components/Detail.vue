@@ -2,12 +2,11 @@
   <div class="detail">
   <graphs v-if="chartData" :graph_data='chartData' :stockSymbol='stockSymbol'/>
   <div class="buttons">
-    <form class="" action="index.html" method="post">
+
       <label for="number_of_shares">Quantity</label>
       <input type="number" id="number_of_shares" v-model='number_of_shares'>
-      <button v-model='stockSymbol' type="button" @click="buyShare">Buy Shares</button>
+      <button type="button" @click="buyShare">Buy Shares</button>
       <button type="button" @click="sellShare">Sell Shares</button>
-    </form>
   </div>
   </div>
 </template>
@@ -34,26 +33,22 @@ export default {
   watch: {
     detailStock: function () {
       this.formatChartData();
-      console.log('formatChartData called');
     }
   },
   methods: {
     formatChartData: function () {
       this.chartData = [];
-      // console.log(this.detailStock);
+
       this.stockData = this.detailStock['Time Series (Daily)'];
       // this.stockSymbol = this.detailStock["Meta Data"]["2. Symbol"];
-      // console.log(this.stockData);
       for (const key of Object.keys(this.stockData)) {
         this.chartData.push([
           Math.round(new Date(key).getTime()),
           parseFloat(this.stockData[key]['4. close'])
         ])
       }
-      console.log('chartData:',this.chartData);
     },
-    buyShare: function (e) {
-      e.preventDefault();
+    buyShare: function () {
       const share = {
         stock_symbol: this.detailStock["Meta Data"]["2. Symbol"],
         number_of_shares: parseInt(this.number_of_shares)
@@ -64,7 +59,6 @@ export default {
           StockService.updateStock(stock._id, share)
           .then(res => res.json())
           .then(res => eventBus.$emit('share-added', res))
-          .then(res => console.log(res))
             return
           }
         }
@@ -72,7 +66,19 @@ export default {
       .then(res => eventBus.$emit('share-added', res))
     },
     sellShare: function () {
-      console.log("Sell Share Button");
+      const share = {
+        stock_symbol: this.detailStock["Meta Data"]["2. Symbol"],
+        number_of_shares: parseInt(this.number_of_shares)
+      };
+      for (let stock of this.userStocks){
+        if (share.stock_symbol === stock.stock_symbol){
+          stock.number_of_shares -= share.number_of_shares
+          StockService.updateStock(stock._id, stock)
+          .then(res => res.json())
+          .then(res => eventBus.$emit('share-added', res))
+            return
+          }
+        }
     }
   }
 }
