@@ -37,7 +37,7 @@ export default {
       // console.log(this.stockData);
       for (const key of Object.keys(this.stockData)) {
         this.chartData.push([
-          Math.round(new Date(key).getTime()/1000),
+          Math.round(new Date(key).getTime()),
           parseFloat(this.stockData[key]['4. close'])
         ])
       }

@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="">
-    <highcharts :options="chartOptions"></highcharts>
-
+    <!-- <highcharts :options="chartOptions"></highcharts> -->
+    <highcharts :constructor-type="'stockChart'" :options="chartOptions"></highcharts>
   </div>
 
 </template>
@@ -9,10 +9,15 @@
 <script>
 
 import {Chart} from 'highcharts-vue'
-import Highcharts from 'highcharts'
-import exportingInit from 'highcharts/modules/exporting'
+// import Highcharts from 'highcharts'
+// import exportingInit from 'highcharts/modules/exporting'
+//
+// exportingInit(Highcharts)
 
-exportingInit(Highcharts)
+import Highcharts from 'highcharts'
+import stockInit from 'highcharts/modules/stock'
+
+stockInit(Highcharts)
 
 export default {
   // data() {
@@ -37,7 +42,7 @@ export default {
     chartOptions() {
       return {
       series: [{
-        data: this.graph_data
+        data: this.graph_data.reverse()
       }],
       title: {
         text: this.stockSymbol
