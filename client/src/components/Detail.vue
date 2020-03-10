@@ -6,7 +6,7 @@
       <label for="number_of_shares">Quantity</label>
       <input type="number" id="number_of_shares" v-model='number_of_shares'>
       <button type="button" @click="buyShare">Buy Shares</button>
-      <button type="button" @click="sellShare">Sell Shares</button>
+      <button v-if="userStocks" type="button" @click="sellShare">Sell Shares</button>
   </div>
   </div>
 </template>
@@ -71,7 +71,8 @@ export default {
         number_of_shares: parseInt(this.number_of_shares)
       };
       for (let stock of this.userStocks){
-        if (share.stock_symbol === stock.stock_symbol){
+        if (share.stock_symbol === stock.stock_symbol &&
+        share.number_of_shares <= stock.number_of_shares){
           stock.number_of_shares -= share.number_of_shares
           StockService.updateStock(stock._id, stock)
           .then(res => res.json())
@@ -79,6 +80,7 @@ export default {
             return
           }
         }
+        alert("nae stocks")
     }
   }
 }
