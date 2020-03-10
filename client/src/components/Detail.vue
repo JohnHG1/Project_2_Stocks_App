@@ -2,14 +2,19 @@
   <div class="detail">
   <graphs v-if="chartData" :graph_data='chartData' :stockSymbol='stockSymbol'/>
   <div class="buttons">
-    <button type="button" @click="buyShare">Buy Shares</button>
-    <button type="button" @click="sellShare">Sell Shares</button>
+    <form class="" action="index.html" method="post">
+      <label for="number_of_shares">Quantity</label>
+      <input type="number" id="number_of_shares" v-model='number_of_shares'>
+      <button v-model='stockSymbol' type="button" @click="buyShare">Buy Shares</button>
+      <button type="button" @click="sellShare">Sell Shares</button>
+    </form>
   </div>
   </div>
 </template>
 
 <script>
 import Graph from './Graph.vue';
+import StockService from '../services/StockService.js';
 import {eventBus} from '../main.js';
 
 export default {
@@ -22,7 +27,8 @@ export default {
     return {
       chartData: [],
       stockData: null,
-      stockSymbol: null
+      stockSymbol: null,
+      number_of_shares: null
     }
   },
   watch: {
@@ -46,8 +52,18 @@ export default {
       }
       console.log('chartData:',this.chartData);
     },
-    buyShare: function () {
-      console.log("Buy Share Button");
+    buyShare: function (e) {
+      e.preventDefault();
+      const share = {
+        stock_symbol: this.detailStock["Meta Data"]["2. Symbol"],
+        number_of_shares: this.number_of_shares
+      };
+
+      StockService.postStock(share)
+      .then(res => eventBus.$emit('share-added', res))
+    },
+    sellShare: function () {
+      console.log("Sell Share Button");
     }
   }
 }
