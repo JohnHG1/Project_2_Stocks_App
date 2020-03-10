@@ -50,8 +50,8 @@ methods: {
   },
   searchResultSelect: function() {
     console.log("hello world");
+    }
   }
-}
 }
 </script>
 

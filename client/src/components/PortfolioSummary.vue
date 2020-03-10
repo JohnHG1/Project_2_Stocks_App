@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="portfolio">
-    <h1>Total: ${{this.portfolioTotal.toFixed(2)}}</h1>
+    <h1>Total: ${{numberWithCommas(this.portfolioTotal.toFixed(2))}}</h1>
   </div>
 
 </template>
@@ -9,7 +9,11 @@
 export default {
   name:'portfolioSummary',
   props:['userStocks'],
-
+  methods: {
+    numberWithCommas: function (x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
+  },
   computed:{
     portfolioTotal(){
       return this.userStocks.reduce((runningTotal, stock) => runningTotal + stock.price * stock.number_of_shares, 0)

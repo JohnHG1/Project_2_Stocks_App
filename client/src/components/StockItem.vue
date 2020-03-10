@@ -2,7 +2,7 @@
   <div class="stock-item">
     <div class="top-line">
       <span>{{stock['stock_symbol']}}</span>
-      <span>${{parseFloat(stock['number_of_shares']*stock['price']).toFixed(2)}}</span>
+      <span>${{numberWithCommas(parseFloat(stock['number_of_shares'] * stock['price']).toFixed(2))}}</span>
     </div>
     <div class="bottom-line">
       <p>{{stock.number_of_shares}} @ ${{stock.price}}</p>
@@ -15,7 +15,12 @@
 <script>
 export default {
   name: 'stockItem',
-  props: ['stock']
+  props: ['stock'],
+  methods:{
+  numberWithCommas: function (x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+  }
 }
 </script>
 
