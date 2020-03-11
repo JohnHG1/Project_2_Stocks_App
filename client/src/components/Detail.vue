@@ -41,7 +41,7 @@ export default {
       stockData: null,
       stockSymbol: null,
       number_of_shares: null,
-      detailStockInfo: null
+      detailStockInfo: {}
     }
   },
   watch: {
@@ -109,11 +109,14 @@ export default {
         fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${this.detailStock["Meta Data"]["2. Symbol"]}&apikey=${process.env.VUE_APP_API_KEY}`)
           .then(res => res.json())
           .then(payload => {
+            console.log(payload);
             this.detailStockInfo['price'] = parseFloat(payload['Global Quote']['05. price'])
             this.detailStockInfo['open'] = parseFloat(payload['Global Quote']['02. open'])
             this.detailStockInfo['high'] = parseFloat(payload['Global Quote']['03. high'])
             this.detailStockInfo['low'] = parseFloat(payload['Global Quote']['04. low'])
             this.detailStockInfo['change'] = parseFloat(payload['Global Quote']['10. change percent'])
+            this.detailStockInfo['stock_symbol'] = payload['Global Quote']['01. symbol']
+            console.log(this.detailStockInfo);
         })
 
       }
