@@ -101,6 +101,9 @@ export default {
             StockService.updateStock(stock._id, stock)
             .then(res => res.json())
             .then(res => eventBus.$emit('share-added', res))
+            if (stock.number_of_shares === 0) {
+              StockService.deleteStock(stock._id)
+            }
             this.number_of_shares = null;
             return
           }
