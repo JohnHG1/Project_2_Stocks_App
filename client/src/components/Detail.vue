@@ -8,9 +8,9 @@
         <div class="info-header">
           <h2 class="symbol">{{detailStockInfo.stock_symbol}}</h2> <h2>${{detailStockInfo.price.toFixed(2)}}</h2>
         </div>
-        <p class="change">{{detailStockInfo.change.toFixed(2)}}</p>
-        <p class="blah">Open: ${{detailStockInfo.open.toFixed(2)}}</p>
-        <p class="blah">High: ${{detailStockInfo.high.toFixed(2)}}  Low: ${{detailStockInfo.low.toFixed(2)}}</p>
+        <p class="change"><strong>Daily     {{detailStockInfo.change.toFixed(2)}}</strong></p>
+        <p class="blah"><strong>Open: ${{detailStockInfo.open.toFixed(2)}}</strong></p>
+        <p class="blah"><strong>High: ${{detailStockInfo.high.toFixed(2)}}  Low: ${{detailStockInfo.low.toFixed(2)}}</strong></p>
       </div>
 
       <div class="buy-sell">
@@ -148,6 +148,10 @@ export default {
         margin: 0;
       }
 
+      p {
+        font-size: 24px
+      }
+
       .info-header {
         display: flex;
         justify-content: space-between
@@ -166,6 +170,7 @@ export default {
 
       .blah {
         text-align: left;
+        font-size: 24px
       }
 
       .info-buysell {
@@ -202,10 +207,13 @@ export default {
       button {
         width: 30%;
         font-size: 1.25em;
+        border: 23px;
+        border-color: black
       }
 
       .sell {
         background-color: #E83A3A;
+
       }
 
       .buy {
