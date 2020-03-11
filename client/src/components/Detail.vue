@@ -8,7 +8,7 @@
         <div class="info-header">
           <h2 class="symbol">{{detailStockInfo.stock_symbol}}</h2> <h2>${{detailStockInfo.price.toFixed(2)}}</h2>
         </div>
-        <p class="change"><strong>Daily     {{detailStockInfo.change.toFixed(2)}}</strong></p>
+        <p v-bind:class="isPositive ? 'positive':'negative'" class="change"><strong>Daily     {{detailStockInfo.change.toFixed(2)}}</strong></p>
         <p class="blah"><strong>Open: ${{detailStockInfo.open.toFixed(2)}}</strong></p>
         <p class="blah"><strong>High: ${{detailStockInfo.high.toFixed(2)}}  Low: ${{detailStockInfo.low.toFixed(2)}}</strong></p>
       </div>
@@ -43,7 +43,17 @@ export default {
       stockData: null,
       stockSymbol: null,
       number_of_shares: null,
-      detailStockInfo: {}
+      detailStockInfo: {},
+      isPositive: null
+    }
+  },
+  mounted: {
+    checkChange: function(){
+      if(detailStockInfo.change >= 0){
+        return this.isPositive = true;
+      } else {
+        return this.isPositive = false;
+      }
     }
   },
   watch: {
@@ -167,6 +177,15 @@ export default {
         margin: 0;
         padding: 2px
       }
+
+
+    .negative {
+      color: red;
+    }
+
+    .positive {
+      color: green;
+    }
 
       .blah {
         text-align: left;
