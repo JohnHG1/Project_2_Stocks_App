@@ -22,15 +22,16 @@ export default {
   },
   data(){
     return {
-      isPositive: null
+      isPositive: false
     }
   },
-  mounted: {
+  mounted() {
+    checkChange();
+  },
+  methods: {
     checkChange: function(){
-      if(stock.change >= 0){
-        return this.isPositive = true;
-      } else {
-        return this.isPositive = false;
+      if(this.stock.change >= 0){
+        this.isPositive = true;
       }
     }
   }
