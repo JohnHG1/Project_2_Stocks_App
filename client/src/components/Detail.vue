@@ -1,7 +1,7 @@
 <template>
   <div class="detail">
     <div class="graph">
-        <graphs :graph_data='chartData' :stockSymbol='stockSymbol'/>
+      <graphs :graph_data='chartData' :stockSymbol='stockSymbol'/>
     </div>
     <div class="info-buysell">
       <div class="info">
@@ -14,8 +14,8 @@
       <div class="buy-sell">
         <input type="number" id="number_of_shares" v-model='number_of_shares' placeholder="enter amount">
         <div class="buttons">
-        <button class="buy" type="button" @click="buyShare">BUY</button>
-        <button class="sell" type="button" @click="sellShare">SELL</button>
+          <button class="buy" type="button" @click="buyShare">BUY</button>
+          <button class="sell" type="button" @click="sellShare">SELL</button>
         </div>
       </div>
     </div>
@@ -33,7 +33,7 @@ export default {
   name: 'Detail',
   props: ['detailStock', 'userStocks'],
   components:{
-      'graphs': Graph
+    'graphs': Graph
   },
   data() {
     return {
@@ -73,10 +73,10 @@ export default {
           StockService.updateStock(stock._id, share)
           .then(res => res.json())
           .then(res => eventBus.$emit('share-added', res))
-            this.number_of_shares = null;
-            return
-          }
+          this.number_of_shares = null;
+          return
         }
+      }
       StockService.postStock(share)
       .then(res => eventBus.$emit('share-added', res))
       this.number_of_shares = null;
@@ -88,84 +88,92 @@ export default {
       };
       for (let stock of this.userStocks){
         if (share.stock_symbol === stock.stock_symbol &&
-        share.number_of_shares <= stock.number_of_shares){
-          stock.number_of_shares -= share.number_of_shares
-          StockService.updateStock(stock._id, stock)
-          .then(res => res.json())
-          .then(res => eventBus.$emit('share-added', res))
-          this.number_of_shares = null;
+          share.number_of_shares <= stock.number_of_shares){
+            stock.number_of_shares -= share.number_of_shares
+            StockService.updateStock(stock._id, stock)
+            .then(res => res.json())
+            .then(res => eventBus.$emit('share-added', res))
+            this.number_of_shares = null;
             return
           }
         }
         alert("Insufficient shares!")
       },
-        populateStockInfo: function(){
-         for (let stock of this.userStocks){
-           if (this.detailStock['Meta Data']['2. Symbol'] === stock.stock_symbol){
-             this.detailStockInfo = stock
-             return
-           }
+      populateStockInfo: function(){
+        for (let stock of this.userStocks){
+          if (this.detailStock['Meta Data']['2. Symbol'] === stock.stock_symbol){
+            this.detailStockInfo = stock
+            return
+          }
+        }
+        fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${this.detailStock["Meta Data"]["2. Symbol"]}&apikey=${process.env.VUE_APP_API_KEY}`)
+          .then(res => res.json())
+          .then(payload => {
+            this.detailStockInfo['price'] = parseFloat(payload['Global Quote']['05. price'])
+            this.detailStockInfo['open'] = parseFloat(payload['Global Quote']['02. open'])
+            this.detailStockInfo['high'] = parseFloat(payload['Global Quote']['03. high'])
+            this.detailStockInfo['low'] = parseFloat(payload['Global Quote']['04. low'])
+            this.detailStockInfo['change'] = parseFloat(payload['Global Quote']['10. change percent'])
+        })
 
-         }
-         console.log('fetch request');
       }
     }
   }
 
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
 
-.detail {
-  width: 75%;
-  height: 700px;
-  background-color: lightgrey;
-  margin: 0 auto;
-  padding: 0;
-  justify-content: center;
-}
+    <style scoped>
 
-h1 {
-  margin: 0;
-}
+      .detail {
+        width: 75%;
+        height: 700px;
+        background-color: lightgrey;
+        margin: 0 auto;
+        padding: 0;
+        justify-content: center;
+      }
 
-.info-buysell {
-  width: 100%;
-  display: flex;
-  background-color: green;
-}
+      h1 {
+        margin: 0;
+      }
 
-.info{
-  width: 50%;
-  justify-content: left;
-  background-color: red
-}
+      .info-buysell {
+        width: 100%;
+        display: flex;
+        background-color: green;
+      }
 
-.buy-sell {
-  width: 50%;
-  margin: 10px auto;
-  background-color: blue;
-}
+      .info{
+        width: 50%;
+        justify-content: left;
+        background-color: red;
+      }
 
-input {
-  width: 100%;
-  padding: 0;
-  border: none;
-  font-size: 1.25em;
-  margin: 5px 0;
-}
+      .buy-sell {
+        width: 50%;
+        margin: 10px auto;
+        background-color: blue;
+      }
 
-button {
-  width: 50%;
-  font-size: 1.25em
-}
+      input {
+        width: 100%;
+        padding: 0;
+        border: none;
+        font-size: 1.25em;
+        margin: 5px 0;
+      }
 
-.sell {
-  background-color: #E83A3A;
-}
+      button {
+        width: 50%;
+        font-size: 1.25em;
+      }
 
-.buy {
-  background-color: #018E42
-}
-</style>
+      .sell {
+        background-color: #E83A3A;
+      }
+
+      .buy {
+        background-color: #018E42
+      }
+    </style>
