@@ -1,12 +1,15 @@
 <template>
   <div id="app">
+
     <div class="portfolio-summary">
       <portfolio-summary :userStocks="userStocks"/>
     </div>
-    <div class="body">
+
+    <div class="main">
       <stock-list :userStocks="userStocks"/>
       <detail :userStocks="userStocks" :detailStock="detailStock"/>
     </div>
+
   </div>
 </template>
 
@@ -84,6 +87,10 @@ export default {
 </script>
 
 <style>
+body{
+  margin: 0;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -97,8 +104,8 @@ export default {
   height: 70px;
 }
 
-.body {
-  display: flex
+.main {
+  display: flex;
 }
 
 </style>

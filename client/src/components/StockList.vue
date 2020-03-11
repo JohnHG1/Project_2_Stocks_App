@@ -1,19 +1,19 @@
 <template lang="html">
-  <div class="stock-list">
-    <input type="text" value="" placeholder="Search" v-model="searchString" list="search-list" @change="handleSearchInputs">
+  <div class="stock-list-container">
 
+    <div class="stock-search">
+      <input type="text" value="" placeholder="Search" v-model="searchString" list="search-list" @change="handleSearchInputs">
 
-      <!-- <ul id="search-list" v-if="searchResults">
-        <li @click.native="searchResultSelect" :value="stock['1. symbol']" v-for="stock in searchResults">{{stock["1. symbol"]}}</li>
-      </ul> -->
       <select id="search-list" v-if="searchResults.length !== 0" @change="handleStockSearchSelect" v-model="selectedResult">
-          <option v-for="stock in searchResults" :value="stock" ><b>{{stock["2. name"]}}</b>: {{stock["8. currency"]}}</option>
+            <option v-for="stock in searchResults" :value="stock" ><b>{{stock["2. name"]}}</b>: {{stock["8. currency"]}}</option>
       </select>
+    </div>
 
+    <div class="user-stock-list">
+      <stock-item @click.native="handleStockClick(stock)" v-for="stock in userStocks" :stock="stock"/>
+    </div>
 
-    <stock-item @click.native="handleStockClick(stock)" v-for="stock in userStocks" :stock="stock"/>
   </div>
-
 </template>
 
 <script>
@@ -58,25 +58,41 @@ methods: {
 </script>
 
 <style lang="css" scoped>
-.stock-list {
-  width: 20%;
-  height: 700px;
+div {
+  border-radius: 0.4em;
+}
+.stock-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 20vw;
+  height: 77vh;
+  align-content: space-between;
+  margin: 1em;
+}
+.stock-search {
+  width: 20vw;
+  height: 10vh;
   background-color: lightgrey;
-  padding: 0;
-  margin: 0;
 }
-
-datalist {
-  /* display: block; */
-}
-
 input {
   width: 90%;
-  margin: 2% 5%;
+  margin: 3.5% 5%;
   padding: 0;
   border: none;
   border-radius: 3px;
-  font-size: 1.25em;
+  font-size: 2em;
+}
+select {
+  font-size: 0.9em;
+  background-color: grey;
+  color: #f2f2f2;
+}
+.user-stock-list {
+  width: 20vw;
+  height: 64vh;
+  padding: 4px 4px;
+  margin: 0;
+  background-color: lightgrey;
 }
 
 
