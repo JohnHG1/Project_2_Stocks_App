@@ -47,19 +47,19 @@ export default {
       isPositive: false
     }
   },
-  mounted() {
-    this.checkChange();
-  },
   watch: {
     detailStock: function () {
       this.formatChartData();
       this.populateStockInfo();
+      this.checkChange();
     }
   },
   methods: {
     checkChange: function(){
       if(this.detailStockInfo.change >= 0){
         this.isPositive = true;
+      } else {
+        this.isPositive = false;
       }
     },
     formatChartData: function () {
