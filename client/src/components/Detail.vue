@@ -109,6 +109,7 @@ export default {
         fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${this.detailStock["Meta Data"]["2. Symbol"]}&apikey=${process.env.VUE_APP_API_KEY}`)
           .then(res => res.json())
           .then(payload => {
+            this.detailStockInfo={}
             console.log(payload);
             this.detailStockInfo['price'] = parseFloat(payload['Global Quote']['05. price'])
             this.detailStockInfo['open'] = parseFloat(payload['Global Quote']['02. open'])
