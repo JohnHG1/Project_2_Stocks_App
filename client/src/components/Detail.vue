@@ -6,16 +6,12 @@
     <div class="info-buysell">
       <div class="info">
         <div class="info-header">
-          <h2>{{detailStockInfo.stock_symbol}} ${{detailStockInfo.price.toFixed(2)}}</h2>
-          <p>Price</p>
-          <h2>{{detailStockInfo.stock_symbol}} ${{detailStockInfo.open.toFixed(2)}}</h2>
-          <p>Open</p>
-          <h2>{{detailStockInfo.stock_symbol}} ${{detailStockInfo.high.toFixed(2)}}</h2>
-          <p>High</p>
-          <h2>{{detailStockInfo.stock_symbol}} ${{detailStockInfo.low.toFixed(2)}}</h2>
-          <p>Low</p>
-          <h2>{{detailStockInfo.stock_symbol}} ${{detailStockInfo.change.toFixed(2)}}</h2>
-          <p>Change</p>
+          <h1>{{detailStockInfo.stock_symbol}}</h1>
+          <h3>Price: ${{detailStockInfo.price.toFixed(2)}}</h3>
+          <h3>Open: ${{detailStockInfo.open.toFixed(2)}}</h3>
+          <h3>High: ${{detailStockInfo.high.toFixed(2)}}</h3>
+          <h3>Low: ${{detailStockInfo.low.toFixed(2)}}</h3>
+          <h3>Change: ${{detailStockInfo.change.toFixed(2)}}</h3>
         </div>
       </div>
 
