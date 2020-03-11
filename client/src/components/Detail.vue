@@ -4,15 +4,13 @@
       <graphs :graph_data='chartData' :stockSymbol='stockSymbol'/>
     </div>
     <div class="info-buysell">
-      <div class="info" >
-        <div class="info-header ">
-          <h1>{{detailStockInfo.stock_symbol}}</h1>
-          <h3>Price: ${{detailStockInfo.price.toFixed(2)}}</h3>
-          <h3>Open: ${{detailStockInfo.open.toFixed(2)}}</h3>
-          <h3>High: ${{detailStockInfo.high.toFixed(2)}}</h3>
-          <h3>Low: ${{detailStockInfo.low.toFixed(2)}}</h3>
-          <h3>Change: ${{detailStockInfo.change.toFixed(2)}}</h3>
+      <div class="info">
+        <div class="info-header">
+          <h2 class="symbol">{{detailStockInfo.stock_symbol}}</h2> <h2>${{detailStockInfo.price.toFixed(2)}}</h2>
         </div>
+        <p class="change">{{detailStockInfo.change.toFixed(2)}}</p>
+        <p class="blah">Open: ${{detailStockInfo.open.toFixed(2)}}</p>
+        <p class="blah">High: ${{detailStockInfo.high.toFixed(2)}}  Low: ${{detailStockInfo.low.toFixed(2)}}</p>
       </div>
 
       <div class="buy-sell">
@@ -119,7 +117,7 @@ export default {
             this.detailStockInfo={}
             console.log(payload);
             this.detailStockInfo['price'] = parseFloat(payload['Global Quote']['05. price'])
-            this.detailStockInfo['open'] = parseFloat(payload['Global Quote']['02. open'])
+            this.detailStockInfo['close'] = parseFloat(payload['Global Quote']['02. open'])
             this.detailStockInfo['high'] = parseFloat(payload['Global Quote']['03. high'])
             this.detailStockInfo['low'] = parseFloat(payload['Global Quote']['04. low'])
             this.detailStockInfo['change'] = parseFloat(payload['Global Quote']['10. change percent'])
@@ -150,19 +148,41 @@ export default {
         margin: 0;
       }
 
+      .info-header {
+        display: flex;
+        justify-content: space-between
+      }
+
+      .info-header h2 {
+        margin: 0;
+        padding: 2px
+      }
+
+      .change {
+        text-align: right;
+        margin: 0;
+        padding: 2px
+      }
+
+      .blah {
+        text-align: left;
+      }
+
       .info-buysell {
         width: 100%;
         display: flex;
-        background-color: green;
       }
 
       .info{
         width: 50%;
         justify-content: left;
+<<<<<<< HEAD
       }
 
       .info_negative {
         background-color: red;
+=======
+>>>>>>> c9c2ec9ee40a3b201b216961dd96053c08ac06f5
       }
       .info_positive {
         background-color: green;
@@ -171,11 +191,11 @@ export default {
       .buy-sell {
         width: 50%;
         margin: 10px auto;
-        background-color: blue;
+
       }
 
       input {
-        width: 100%;
+        width: 60%;
         padding: 0;
         border: none;
         font-size: 1.25em;
@@ -183,7 +203,7 @@ export default {
       }
 
       button {
-        width: 50%;
+        width: 30%;
         font-size: 1.25em;
       }
 
