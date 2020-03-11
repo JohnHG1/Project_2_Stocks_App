@@ -14,7 +14,7 @@
       </div>
 
       <div class="buy-sell">
-        <input type="number" id="number_of_shares" v-model='number_of_shares' placeholder="enter amount">
+        <input min=0 type="number" id="number_of_shares" v-model='number_of_shares' placeholder="enter amount">
         <div class="buttons">
           <button class="buy" type="button" @click="buyShare">BUY</button>
           <button class="sell" type="button" @click="sellShare">SELL</button>
@@ -43,25 +43,21 @@ export default {
       stockData: null,
       stockSymbol: null,
       number_of_shares: null,
-      detailStockInfo: {},
-      isPositive: false
+      detailStockInfo: {}
     }
   },
   watch: {
     detailStock: function () {
       this.formatChartData();
       this.populateStockInfo();
-      this.checkChange();
+    }
+  },
+  computed: {
+    isPositive() {
+      return this.detailStockInfo.change >= 0
     }
   },
   methods: {
-    checkChange: function(){
-      if(this.detailStockInfo.change >= 0){
-        this.isPositive = true;
-      } else {
-        this.isPositive = false;
-      }
-    },
     formatChartData: function () {
       this.chartData = [];
 
@@ -169,13 +165,13 @@ export default {
 
       .price {
         font-size: 40px;
-        padding: 2px;
         margin: 0px;
       }
 
       .info-header {
         display: flex;
-        justify-content: space-between
+        justify-content: space-between;
+        padding-left: 5px
       }
 
       .info-header h2 {
@@ -186,7 +182,6 @@ export default {
       .change {
         text-align: right;
         margin: 0;
-        padding: 2px
       }
 
 
@@ -200,7 +195,8 @@ export default {
 
       .blah {
         text-align: left;
-        font-size: 18px
+        font-size: 18px;
+        padding-left: 5px
       }
 
       .info-buysell {
@@ -211,14 +207,6 @@ export default {
       .info{
         width: 50%;
         justify-content: left;
-      }
-
-      .info_negative {
-        background-color: red;
-      }
-
-      .info_positive {
-        background-color: green;
       }
 
       .buy-sell {
