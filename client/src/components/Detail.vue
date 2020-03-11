@@ -7,15 +7,9 @@
       <div class="info">
         <div class="info-header">
           <h2>{{detailStockInfo.stock_symbol}} ${{detailStockInfo.price.toFixed(2)}}</h2>
-          <p>Price</p>
-          <h2>{{detailStockInfo.stock_symbol}} ${{detailStockInfo.open.toFixed(2)}}</h2>
-          <p>Open</p>
-          <h2>{{detailStockInfo.stock_symbol}} ${{detailStockInfo.high.toFixed(2)}}</h2>
-          <p>High</p>
-          <h2>{{detailStockInfo.stock_symbol}} ${{detailStockInfo.low.toFixed(2)}}</h2>
-          <p>Low</p>
-          <h2>{{detailStockInfo.stock_symbol}} ${{detailStockInfo.change.toFixed(2)}}</h2>
-          <p>Change</p>
+          <p>{{detailStockInfo.change.toFixed(2)}}</p>
+          <p>Open: ${{detailStockInfo.open.toFixed(2)}}</p>
+          <p>High: ${{detailStockInfo.high.toFixed(2)}}  Low: ${{detailStockInfo.low.toFixed(2)}}</p>
         </div>
       </div>
 
@@ -123,7 +117,7 @@ export default {
             this.detailStockInfo={}
             console.log(payload);
             this.detailStockInfo['price'] = parseFloat(payload['Global Quote']['05. price'])
-            this.detailStockInfo['open'] = parseFloat(payload['Global Quote']['02. open'])
+            this.detailStockInfo['close'] = parseFloat(payload['Global Quote']['02. open'])
             this.detailStockInfo['high'] = parseFloat(payload['Global Quote']['03. high'])
             this.detailStockInfo['low'] = parseFloat(payload['Global Quote']['04. low'])
             this.detailStockInfo['change'] = parseFloat(payload['Global Quote']['10. change percent'])
