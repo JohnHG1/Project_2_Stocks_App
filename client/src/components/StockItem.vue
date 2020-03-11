@@ -16,23 +16,22 @@ export default {
   name: 'stockItem',
   props: ['stock'],
   methods:{
-  numberWithCommas: function (x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    numberWithCommas: function (x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
+    checkChange: function(){
+      if(this.stock.change >= 0){
+        this.isPositive = true;
+      }
     }
   },
   data(){
     return {
-      isPositive: null
+      isPositive: false
     }
   },
-  mounted: {
-    checkChange: function(){
-      if(stock.change >= 0){
-        return this.isPositive = true;
-      } else {
-        return this.isPositive = false;
-      }
-    }
+  mounted() {
+    this.checkChange();
   }
 }
 </script>

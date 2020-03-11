@@ -44,17 +44,11 @@ export default {
       stockSymbol: null,
       number_of_shares: null,
       detailStockInfo: {},
-      isPositive: null
+      isPositive: false
     }
   },
-  mounted: {
-    checkChange: function(){
-      if(detailStockInfo.change >= 0){
-        return this.isPositive = true;
-      } else {
-        return this.isPositive = false;
-      }
-    }
+  mounted() {
+    this.checkChange();
   },
   watch: {
     detailStock: function () {
@@ -63,6 +57,11 @@ export default {
     }
   },
   methods: {
+    checkChange: function(){
+      if(this.detailStockInfo.change >= 0){
+        this.isPositive = true;
+      }
+    },
     formatChartData: function () {
       this.chartData = [];
 
