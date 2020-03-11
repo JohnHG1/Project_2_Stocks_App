@@ -7,6 +7,7 @@
       <div class="info">
         <div class="info-header">
           <h2>{{detailStockInfo.stock_symbol}} ${{detailStockInfo.price.toFixed(2)}}</h2>
+          <p>High</p>
         </div>
       </div>
 
@@ -40,7 +41,7 @@ export default {
       stockData: null,
       stockSymbol: null,
       number_of_shares: null,
-      detailStockInfo:null
+      detailStockInfo: null
     }
   },
   watch: {
@@ -96,7 +97,6 @@ export default {
             return
           }
         }
-        alert("nae stocks")
         alert("Insufficient shares!")
       },
         populateStockInfo: function(){
@@ -132,7 +132,7 @@ h1 {
 
 .info-buysell {
   width: 100%;
-  display: inline;
+  display: flex;
   background-color: green;
 }
 
