@@ -87,6 +87,9 @@ select {
   background-color: grey;
   color: #f2f2f2;
 }
+option {
+  max-width: 10em;
+}
 .user-stock-list {
   width: 20vw;
   height: 64vh;

@@ -7,7 +7,15 @@
       <div class="info">
         <div class="info-header">
           <h2>{{detailStockInfo.stock_symbol}} ${{detailStockInfo.price.toFixed(2)}}</h2>
+          <p>Price</p>
+          <h2>{{detailStockInfo.stock_symbol}} ${{detailStockInfo.open.toFixed(2)}}</h2>
+          <p>Open</p>
+          <h2>{{detailStockInfo.stock_symbol}} ${{detailStockInfo.high.toFixed(2)}}</h2>
           <p>High</p>
+          <h2>{{detailStockInfo.stock_symbol}} ${{detailStockInfo.low.toFixed(2)}}</h2>
+          <p>Low</p>
+          <h2>{{detailStockInfo.stock_symbol}} ${{detailStockInfo.change.toFixed(2)}}</h2>
+          <p>Change</p>
         </div>
       </div>
 
@@ -133,6 +141,7 @@ export default {
         width: 75%;
         height: 700px;
         background-color: lightgrey;
+        margin-top: 1em;
         margin: 0 auto;
         padding: 0;
         justify-content: center;
