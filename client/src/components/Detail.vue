@@ -4,8 +4,8 @@
       <graphs :graph_data='chartData' :stockSymbol='stockSymbol'/>
     </div>
     <div class="info-buysell">
-      <div class="info">
-        <div class="info-header">
+      <div class="info" >
+        <div class="info-header ">
           <h1>{{detailStockInfo.stock_symbol}}</h1>
           <h3>Price: ${{detailStockInfo.price.toFixed(2)}}</h3>
           <h3>Open: ${{detailStockInfo.open.toFixed(2)}}</h3>
@@ -159,7 +159,13 @@ export default {
       .info{
         width: 50%;
         justify-content: left;
+      }
+
+      .info_negative {
         background-color: red;
+      }
+      .info_positive {
+        background-color: green;
       }
 
       .buy-sell {
