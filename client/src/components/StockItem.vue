@@ -7,7 +7,6 @@
     <div class="bottom-line">
       <p>{{stock.number_of_shares}} @ ${{stock.price}}</p>
     </div>
-    <hr>
 
   </div>
 </template>
@@ -28,6 +27,8 @@ export default {
 .stock-item {
   width: 100%;
   display: block;
+  border-bottom: 1px solid darkgrey;
+  padding: 5px 0 0 0;
 }
 .stock-item:hover {
   /* background-color: darkgray; */
@@ -43,7 +44,7 @@ margin: 0;
 }
 
 .bottom-line {
-  font-size: 1em;
+  font-size: 1.2em;
   text-align: right;
 }
 

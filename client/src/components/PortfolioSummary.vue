@@ -44,6 +44,7 @@ export default {
 }
 h1 {
   margin: auto 10px;
+  font-size: 3em;
 }
 
 </style>

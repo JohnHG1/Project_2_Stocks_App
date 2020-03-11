@@ -136,9 +136,9 @@ export default {
 
       .detail {
         width: 65%;
-        height: 700px;
+        height: 77vh;
         background-color: #e3dede;
-        margin-top: 2.3em;
+        margin-top: 1em;
         border-radius: 0 0 0.4em 0.4em;
         padding: 0;
         justify-content: center;
