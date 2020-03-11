@@ -176,13 +176,10 @@ export default {
       .info{
         width: 50%;
         justify-content: left;
-<<<<<<< HEAD
       }
 
       .info_negative {
         background-color: red;
-=======
->>>>>>> c9c2ec9ee40a3b201b216961dd96053c08ac06f5
       }
       .info_positive {
         background-color: green;
