@@ -1,14 +1,8 @@
 <template>
   <div class="detail">
-  <graphs :graph_data='chartData' :stockSymbol='stockSymbol'/>
-  <div class="buy-sell">
-      <!-- <label for="number_of_shares">Quantity</label> -->
-      <input type="number" id="number_of_shares" v-model='number_of_shares' placeholder="enter amount">
-      <div class="buttons">
     <div class="graph">
         <graphs :graph_data='chartData' :stockSymbol='stockSymbol'/>
     </div>
-
     <div class="info-buysell">
       <div class="info">
         <div class="info-header">
@@ -25,6 +19,8 @@
       </div>
     </div>
   </div>
+</div>
+</div>
 </template>
 
 <script>
@@ -115,7 +111,7 @@ export default {
       }
     }
   }
-}
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -147,11 +143,9 @@ h1 {
 }
 
 .buy-sell {
-  width: 20%;
-  margin: 10px auto
   width: 50%;
   margin: 10px auto;
-  background-color: blue
+  background-color: blue;
 }
 
 input {
