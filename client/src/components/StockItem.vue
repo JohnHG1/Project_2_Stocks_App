@@ -16,8 +16,13 @@ export default {
   name: 'stockItem',
   props: ['stock'],
   methods:{
-  numberWithCommas: function (x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    numberWithCommas: function (x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
+    checkChange: function(){
+      if(this.stock.change >= 0){
+        this.isPositive = true;
+      }
     }
   },
   data(){
@@ -26,14 +31,7 @@ export default {
     }
   },
   mounted() {
-    checkChange();
-  },
-  methods: {
-    checkChange: function(){
-      if(this.stock.change >= 0){
-        this.isPositive = true;
-      }
-    }
+    this.checkChange();
   }
 }
 </script>

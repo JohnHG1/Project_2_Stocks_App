@@ -48,7 +48,7 @@ export default {
     }
   },
   mounted() {
-    checkChange();
+    this.checkChange();
   },
   watch: {
     detailStock: function () {
