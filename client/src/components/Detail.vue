@@ -8,7 +8,7 @@
         <div class="info-header">
           <p class="symbol"><strong>{{detailStockInfo.stock_symbol}}</strong></p> <p class="price">${{detailStockInfo.price.toFixed(2)}}</p>
         </div>
-        <p v-bind:class="isPositive ? 'positive':'negative'" class="change"><strong>Daily     {{detailStockInfo.change.toFixed(2)}}</strong></p>
+        <p v-bind:class="isPositive ? 'positive':'negative'" class="change">   {{detailStockInfo.change.toFixed(2)}}%</p>
         <p class="blah"><strong>Open: ${{detailStockInfo.open.toFixed(2)}}</strong></p>
         <p class="blah"><strong>High: ${{detailStockInfo.high.toFixed(2)}}  Low: ${{detailStockInfo.low.toFixed(2)}}</strong></p>
       </div>
