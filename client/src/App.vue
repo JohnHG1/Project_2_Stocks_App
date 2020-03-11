@@ -21,7 +21,6 @@ import StockService from './services/StockService.js'
 import {eventBus} from './main.js';
 
 
-
 export default {
   name: 'App',
   components: {
