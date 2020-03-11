@@ -6,11 +6,11 @@
     <div class="info-buysell">
       <div class="info">
         <div class="info-header">
-          <h2>{{detailStockInfo.stock_symbol}} ${{detailStockInfo.price.toFixed(2)}}</h2>
-          <p>{{detailStockInfo.change.toFixed(2)}}</p>
-          <p>Open: ${{detailStockInfo.open.toFixed(2)}}</p>
-          <p>High: ${{detailStockInfo.high.toFixed(2)}}  Low: ${{detailStockInfo.low.toFixed(2)}}</p>
+          <h2 class="symbol">{{detailStockInfo.stock_symbol}}</h2> <h2>${{detailStockInfo.price.toFixed(2)}}</h2>
         </div>
+        <p class="change">{{detailStockInfo.change.toFixed(2)}}</p>
+        <p class="blah">Open: ${{detailStockInfo.open.toFixed(2)}}</p>
+        <p class="blah">High: ${{detailStockInfo.high.toFixed(2)}}  Low: ${{detailStockInfo.low.toFixed(2)}}</p>
       </div>
 
       <div class="buy-sell">
@@ -148,26 +148,44 @@ export default {
         margin: 0;
       }
 
+      .info-header {
+        display: flex;
+        justify-content: space-between
+      }
+
+      .info-header h2 {
+        margin: 0;
+        padding: 2px
+      }
+
+      .change {
+        text-align: right;
+        margin: 0;
+        padding: 2px
+      }
+
+      .blah {
+        text-align: left;
+      }
+
       .info-buysell {
         width: 100%;
         display: flex;
-        background-color: green;
       }
 
       .info{
         width: 50%;
         justify-content: left;
-        background-color: red;
       }
 
       .buy-sell {
         width: 50%;
         margin: 10px auto;
-        background-color: blue;
+
       }
 
       input {
-        width: 100%;
+        width: 60%;
         padding: 0;
         border: none;
         font-size: 1.25em;
@@ -175,7 +193,7 @@ export default {
       }
 
       button {
-        width: 50%;
+        width: 30%;
         font-size: 1.25em;
       }
 
