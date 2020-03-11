@@ -58,6 +58,11 @@ export default {
           .then(res => res.json())
           .then(payload => {
             stock['price'] = parseFloat(payload['Global Quote']['05. price'])
+            stock['open'] = parseFloat(payload['Global Quote']['02. open'])
+            stock['high'] = parseFloat(payload['Global Quote']['03. high'])
+            stock['low'] = parseFloat(payload['Global Quote']['04. low'])
+            stock['change'] = parseFloat(payload['Global Quote']['10. change percent'])
+
             this.userStocks.push(stock)
         })
       },

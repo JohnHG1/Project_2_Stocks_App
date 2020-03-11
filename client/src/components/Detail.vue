@@ -5,10 +5,25 @@
       <!-- <label for="number_of_shares">Quantity</label> -->
       <input type="number" id="number_of_shares" v-model='number_of_shares' placeholder="enter amount">
       <div class="buttons">
+    <div class="graph">
+        <graphs :graph_data='chartData' :stockSymbol='stockSymbol'/>
+    </div>
+
+    <div class="info-buysell">
+      <div class="info">
+        <div class="info-header">
+          <h2>{{detailStockInfo.stock_symbol}} ${{detailStockInfo.price.toFixed(2)}}</h2>
+        </div>
+      </div>
+
+      <div class="buy-sell">
+        <input type="number" id="number_of_shares" v-model='number_of_shares' placeholder="enter amount">
+        <div class="buttons">
         <button class="buy" type="button" @click="buyShare">BUY</button>
         <button class="sell" type="button" @click="sellShare">SELL</button>
+        </div>
       </div>
-  </div>
+    </div>
   </div>
 </template>
 
@@ -28,12 +43,14 @@ export default {
       chartData: [],
       stockData: null,
       stockSymbol: null,
-      number_of_shares: null
+      number_of_shares: null,
+      detailStockInfo:null
     }
   },
   watch: {
     detailStock: function () {
       this.formatChartData();
+      this.populateStockInfo();
     }
   },
   methods: {
@@ -84,6 +101,18 @@ export default {
           }
         }
         alert("nae stocks")
+        alert("Insufficient shares!")
+      },
+        populateStockInfo: function(){
+         for (let stock of this.userStocks){
+           if (this.detailStock['Meta Data']['2. Symbol'] === stock.stock_symbol){
+             this.detailStockInfo = stock
+             return
+           }
+
+         }
+         console.log('fetch request');
+      }
     }
   }
 }
@@ -105,9 +134,24 @@ h1 {
   margin: 0;
 }
 
+.info-buysell {
+  width: 100%;
+  display: inline;
+  background-color: green;
+}
+
+.info{
+  width: 50%;
+  justify-content: left;
+  background-color: red
+}
+
 .buy-sell {
   width: 20%;
   margin: 10px auto
+  width: 50%;
+  margin: 10px auto;
+  background-color: blue
 }
 
 input {
