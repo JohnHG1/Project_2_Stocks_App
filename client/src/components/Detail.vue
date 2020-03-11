@@ -117,7 +117,7 @@ export default {
             this.detailStockInfo={}
             console.log(payload);
             this.detailStockInfo['price'] = parseFloat(payload['Global Quote']['05. price'])
-            this.detailStockInfo['close'] = parseFloat(payload['Global Quote']['02. open'])
+            this.detailStockInfo['open'] = parseFloat(payload['Global Quote']['02. open'])
             this.detailStockInfo['high'] = parseFloat(payload['Global Quote']['03. high'])
             this.detailStockInfo['low'] = parseFloat(payload['Global Quote']['04. low'])
             this.detailStockInfo['change'] = parseFloat(payload['Global Quote']['10. change percent'])
@@ -138,8 +138,8 @@ export default {
         width: 75%;
         height: 700px;
         background-color: lightgrey;
-        margin-top: 1em;
-        margin: 0 auto;
+        margin-top: 2.3em;
+        border-radius: 0 0 0.4em 0.4em;
         padding: 0;
         justify-content: center;
       }
@@ -183,10 +183,17 @@ export default {
         justify-content: left;
       }
 
+      .info_negative {
+        background-color: red;
+      }
+
+      .info_positive {
+        background-color: green;
+      }
+
       .buy-sell {
         width: 50%;
         margin: 10px auto;
-
       }
 
       input {
