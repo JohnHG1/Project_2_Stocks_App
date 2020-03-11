@@ -64,15 +64,15 @@ div {
 .stock-list-container {
   display: flex;
   flex-wrap: wrap;
-  max-width: 20vw;
+  max-width: 30vw;
   height: 77vh;
   align-content: space-between;
   margin: 1em;
 }
 .stock-search {
-  width: 20vw;
+  width: 30vw;
   height: 10vh;
-  background-color: lightgrey;
+  background-color: #e3dede;
 }
 input {
   width: 90%;
@@ -91,11 +91,11 @@ option {
   max-width: 10em;
 }
 .user-stock-list {
-  width: 20vw;
+  width: 30vw;
   height: 64vh;
   padding: 4px 4px;
   margin: 0;
-  background-color: lightgrey;
+  background-color: #e3dede;
 }
 
 

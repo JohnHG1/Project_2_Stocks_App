@@ -6,9 +6,9 @@
     <div class="info-buysell">
       <div class="info">
         <div class="info-header">
-          <h2 class="symbol">{{detailStockInfo.stock_symbol}}</h2> <h2>${{detailStockInfo.price.toFixed(2)}}</h2>
+          <p class="symbol"><strong>{{detailStockInfo.stock_symbol}}</strong></p> <p class="price">${{detailStockInfo.price.toFixed(2)}}</p>
         </div>
-        <p class="change"><strong>Daily     {{detailStockInfo.change.toFixed(2)}}</strong></p>
+        <p class="change"><strong>    {{detailStockInfo.change.toFixed(2)}}%</strong></p>
         <p class="blah"><strong>Open: ${{detailStockInfo.open.toFixed(2)}}</strong></p>
         <p class="blah"><strong>High: ${{detailStockInfo.high.toFixed(2)}}  Low: ${{detailStockInfo.low.toFixed(2)}}</strong></p>
       </div>
@@ -135,9 +135,9 @@ export default {
     <style scoped>
 
       .detail {
-        width: 75%;
+        width: 65%;
         height: 700px;
-        background-color: lightgrey;
+        background-color: #e3dede;
         margin-top: 2.3em;
         border-radius: 0 0 0.4em 0.4em;
         padding: 0;
@@ -150,6 +150,17 @@ export default {
 
       p {
         font-size: 24px
+      }
+
+      .symbol {
+        font-size: 40px;
+        margin: 0px
+      }
+
+      .price {
+        font-size: 40px;
+        padding: 2px;
+        margin: 0px;
       }
 
       .info-header {

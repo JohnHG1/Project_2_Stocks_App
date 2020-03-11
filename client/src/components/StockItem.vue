@@ -31,13 +31,13 @@ export default {
 }
 .stock-item:hover {
   /* background-color: darkgray; */
-  color: #f2f2f2;
+  color: #4CA3EF;
 }
 
 .top-line {
   display: flex;
 justify-content: space-between;
-font-size: 1.25em;
+font-size: 1.75em;
 margin: 0;
 
 }
