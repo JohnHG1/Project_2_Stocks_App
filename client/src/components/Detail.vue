@@ -10,7 +10,7 @@
         </div>
         <p v-bind:class="isPositive ? 'positive':'negative'" class="change">   {{detailStockInfo.change.toFixed(2)}}%</p>
         <p class="blah"><strong>Open: ${{detailStockInfo.open.toFixed(2)}}</strong></p>
-        <p class="blah"><strong>High: ${{detailStockInfo.high.toFixed(2)}}  Low: ${{detailStockInfo.low.toFixed(2)}}</strong></p>
+        <p class="blah"><strong>High: ${{detailStockInfo.high.toFixed(2)}} / Low: ${{detailStockInfo.low.toFixed(2)}}</strong></p>
       </div>
 
       <div class="buy-sell">
@@ -159,7 +159,8 @@ export default {
       }
 
       p {
-        font-size: 24px
+        font-size: 24px;
+        margin: 0
       }
 
       .symbol {
@@ -200,7 +201,7 @@ export default {
 
       .blah {
         text-align: left;
-        font-size: 24px
+        font-size: 18px
       }
 
       .info-buysell {
@@ -235,10 +236,10 @@ export default {
       }
 
       button {
-        width: 30%;
+        width: 25%;
         font-size: 1.25em;
-        border: 23px;
-        border-color: black
+        border: 0.5px solid darkgrey;
+        margin: 5px 15px;
       }
 
       .sell {

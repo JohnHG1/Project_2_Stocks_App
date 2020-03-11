@@ -80,12 +80,13 @@ input {
   padding: 0;
   border: none;
   border-radius: 3px;
-  font-size: 2em;
+  font-size: 1.5em;
 }
 select {
-  font-size: 0.9em;
+  font-size: 1.1em;
   background-color: grey;
   color: #f2f2f2;
+  width: 90%
 }
 option {
   max-width: 10em;
