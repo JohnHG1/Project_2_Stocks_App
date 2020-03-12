@@ -16,8 +16,8 @@
       <div class="buy-sell">
         <input min=0 type="number" id="number_of_shares" v-model='number_of_shares' placeholder="enter amount">
         <div class="buttons">
-          <button class="buy" type="button" @click="buyShare">BUY</button>
-          <button class="sell" type="button" @click="sellShare">SELL</button>
+          <button class="buy" type="button" @click="buyShare">ADD</button>
+          <button class="sell" type="button" @click="sellShare">REMOVE</button>
         </div>
       </div>
     </div>
@@ -60,7 +60,6 @@ export default {
   methods: {
     formatChartData: function () {
       this.chartData = [];
-
       this.stockData = this.detailStock['Time Series (Daily)'];
       for (const key of Object.keys(this.stockData)) {
         this.chartData.push([

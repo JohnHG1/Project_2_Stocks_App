@@ -4,7 +4,7 @@ db.dropDatabase();
 db.stocks.insertMany([
   {
     stock_symbol:"GOOG",
-    number_of_shares:100,
+    number_of_shares:10,
     price: 1234.92
   }
   // {
